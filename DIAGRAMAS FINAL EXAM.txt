@@ -1,0 +1,67 @@
+Student: Solsol Isminio Jak Estai
+
+
+1.- Utilizar PHP o JAVA, Mysql o Postgre es la mejor decisión por que la universidad(según el enunciado) utiliza estos tipos de lenguaje, framework o bd para que haya una compatibilidad en todo el sistema, nos ayuda a implementar mejor la aplicación y en un futuro puede haber escalabilidad respetando las reglas de diseño.
+
+PROCESS DIAGRAM
+------------------------------
+
+@startuml
+|Elector|
+   |#AntiqueWhite|Computer|
+|Elector|
+start
+:He goes to the voting booth;
+:enter data to the computer;
+|Computer|
+:validate voter data;
+
+if (¿the voter is registered?) then (yes)
+   :validate data;
+   if(Are there registered candidates?) then (yes)
+   |Elector|
+   :choose candidate;
+   |Computer|
+   :register vote;
+   stop
+   else(no)
+   :cannot register your vote;
+   stop
+   endif
+else (no)
+  :Unregistered user;
+  stop
+endif
+@enduml
+
+-----------------------------------
+
+CLASS DIAGRAM
+
+--------------
+
+@startuml
+class elector{
+ dni:string
+ name: string
+}
+class candidate{
+ dni:string
+ name: string
+}
+class computer{
+ code:int
+ location:string
+}
+class report{
+ date:date
+ datetime:datetime
+}
+
+elector "*" --o "1" computer
+computer "1" o-- "*" candidate
+report "1" *-- "*" candidate
+report "1" *-- "1" computer
+
+@enduml
+---------------------------------------------------

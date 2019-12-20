@@ -1,0 +1,28 @@
+@startuml
+class models.elector{
+ dni:string
+ name:string
+}
+class models.candidate{
+ dni:string
+ name:string
+}
+class models.computer{
+ code:int
+ location:string
+}
+class models.report{
+ date:date
+ datetime:datetime
+}
+
+models.elector "*" --o "1" models.computer
+models.computer "1" o-- "*" models.candidate
+models.report "1" *-- "*" models.candidate
+models.report "1" *-- "1" models.computer
+
+class controllers.reportController{
+	VoteReport();
+}
+
+@enduml
